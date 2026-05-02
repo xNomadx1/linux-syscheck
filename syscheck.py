@@ -1,6 +1,5 @@
 """Print basic Linux system information"""
 
-import shutil
 import socket
 import subprocess
 
@@ -12,3 +11,7 @@ def print_hostname():
     """Print the system hostname."""
     print(f"Hostname: {socket.gethostname()}")
     
+def print_uptime():
+    """Print system uptime using the uptime command."""
+    print("\nUptime:")
+    subprocess.run(["uptime"], check=False)
