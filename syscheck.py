@@ -26,11 +26,17 @@ def print_disk_usage():
     print(f"Used: {used: .2f} GB")
     print(f"Free: {free: .2f} GB")
 
+def print_memory_usage():
+    """Print memory usage"""
+    print("\nMemory usage:")
+    subprocess.run(["free", "-h"], check=False)
+
 def main():
     """Run all system checks."""
     print_hostname()
     print_uptime()
     print_disk_usage()
+    print_memory_usage()
 
 if __name__ == "__main__":
     main()
