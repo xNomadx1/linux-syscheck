@@ -29,6 +29,11 @@ def parse_args():
         help="Show disk usage for the root filesystem.",
     )
 
+    parser.add_argument(
+        "-m", "--memory",
+        action="store_true",
+        help="Print memory usage.",
+    )
     return parser.parse_args()
         
 def print_hostname():
@@ -54,7 +59,7 @@ def print_disk_usage():
     print(f"Free: {free: .2f} GB")
 
 def print_memory_usage():
-    """Print memory usage"""
+    """Print memory usage."""
     print("\nMemory usage:")
     subprocess.run(["free", "-h"], check=False)
 
@@ -62,7 +67,7 @@ def main():
     """Run all system checks."""
     args = parse_args()
 
-    if not any([args.hostname, args.uptime, args.disk]):
+    if not any([args.hostname, args.uptime, args.disk, args.memory]):
         print_hostname()
         print_uptime()
         print_disk_usage()
@@ -77,6 +82,8 @@ def main():
     if args.disk:
         print_disk_usage()
 
+    if args.memory:
+        print_memory_usage()
 
 
 if __name__ == "__main__":
