@@ -3,7 +3,22 @@
 import socket
 import subprocess
 import shutil
+import argparse
 
+def parse_args():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Shortcuts for system check functions"
+    )
+
+    parser.add_argument(
+        "-hn", "--hostname",
+        action="store_true",
+        help="Show the system hostname.",
+    )
+
+    return parser.parse_args()
+        
 def print_hostname():
     """Print the system hostname."""
     print(f"Hostname: {socket.gethostname()}")
@@ -19,7 +34,7 @@ def print_disk_usage():
 
     usage =shutil.disk_usage("/")
     total = usage.total / (1024 ** 3)
-    used = usage.total / (1024 ** 3)
+    used = usage.used / (1024 ** 3)
     free = usage.free / (1024 ** 3)
 
     print(f"Total: {total:.2f} GB")
@@ -33,10 +48,16 @@ def print_memory_usage():
 
 def main():
     """Run all system checks."""
-    print_hostname()
-    print_uptime()
-    print_disk_usage()
-    print_memory_usage()
+    args = parse_args()
+
+    if not any([args.hostname]):
+        print_hostname()
+        print_uptime()
+        print_disk_usage()
+        print_memory_usage()
+
+    if args.hostname:
+        print_hostname()
 
 if __name__ == "__main__":
     main()
