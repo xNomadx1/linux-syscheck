@@ -8,31 +8,31 @@ import argparse
 def parse_args():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(
-        description="Shortcuts for system check functions"
+        description="CLI shortcuts for system check functions"
     )
 
     parser.add_argument(
         "-hn", "--hostname",
         action="store_true",
-        help="Show the system hostname.",
+        help="show the system hostname",
     )
 
     parser.add_argument(
         "-ut", "--uptime",
         action="store_true",
-        help="Show system uptime.",
+        help="show system uptime",
     )
 
     parser.add_argument(
         "-du", "--disk",
         action="store_true",
-        help="Show disk usage for the root filesystem.",
+        help="show disk usage for the root filesystem",
     )
 
     parser.add_argument(
         "-m", "--memory",
         action="store_true",
-        help="Print memory usage.",
+        help="print memory usage",
     )
     return parser.parse_args()
         
