@@ -17,6 +17,12 @@ def parse_args():
         help="Show the system hostname.",
     )
 
+    parser.add_argument(
+        "-ut", "--uptime",
+        action="store_true",
+        help="Show system uptime."
+    )
+
     return parser.parse_args()
         
 def print_hostname():
@@ -50,7 +56,7 @@ def main():
     """Run all system checks."""
     args = parse_args()
 
-    if not any([args.hostname]):
+    if not any([args.hostname, args.uptime]):
         print_hostname()
         print_uptime()
         print_disk_usage()
@@ -58,6 +64,9 @@ def main():
 
     if args.hostname:
         print_hostname()
+
+    if args.uptime:
+        print_uptime()
 
 if __name__ == "__main__":
     main()
